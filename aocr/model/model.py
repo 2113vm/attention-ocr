@@ -280,7 +280,7 @@ class Model(object):
         text = outputs[0]
         probability = outputs[1]
         if sys.version_info >= (3,):
-            text = text.decode('iso-8859-1')
+            text = text.decode('utf-8')
 
         return (text, probability)
 
@@ -303,14 +303,17 @@ class Model(object):
             ground = batch['labels'][0]
             comment = batch['comments'][0]
             if sys.version_info >= (3,):
-                output = output.decode('iso-8859-1')
-                ground = ground.decode('iso-8859-1')
-                comment = comment.decode('iso-8859-1')
+                #output = output.decode('iso-8859-1')
+                #ground = ground.decode('iso-8859-1')
+                #comment = comment.decode('iso-8859-1')
+                output = output.decode('utf-8')
+                ground = ground.decode('utf-8')
+                comment = comment.decode('utf-8')
 
             probability = result['probability']
 
             if self.use_distance:
-                incorrect = distance.levenshtein(output, ground)
+                incorrect = distance.levenshtein(str(output), str(ground))
                 if not ground:
                     if not output:
                         incorrect = 0
