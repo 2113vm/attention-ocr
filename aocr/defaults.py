@@ -14,9 +14,9 @@ class Config(object):
     # I/O
     NEW_DATASET_PATH = './dataset.tfrecords'
     DATA_PATH = './data.tfrecords'
-    MODEL_DIR = './checkpoints'
+    MODEL_DIR = None
     LOG_PATH = 'aocr.log'
-    OUTPUT_DIR = './results'
+    OUTPUT_DIR = None
     STEPS_PER_CHECKPOINT = 100
     EXPORT_FORMAT = 'savedmodel'
     EXPORT_PATH = 'exported'
@@ -32,18 +32,18 @@ class Config(object):
     # Network parameters
     CLIP_GRADIENTS = True  # whether to perform gradient clipping
     MAX_GRADIENT_NORM = 5.0  # Clip gradients to this norm
-    TARGET_EMBEDDING_SIZE = 10  # embedding dimension for each target
+    TARGET_EMBEDDING_SIZE = 104  # embedding dimension for each target
     ATTN_NUM_HIDDEN = 128  # number of hidden units in attention decoder cell
     ATTN_NUM_LAYERS = 2  # number of layers in attention decoder cell
     # (Encoder number of hidden units will be ATTN_NUM_HIDDEN*ATTN_NUM_LAYERS)
     LOAD_MODEL = True
     OLD_MODEL_VERSION = False
-    TARGET_VOCAB_SIZE = 26+10+3  # 0: PADDING, 1: GO, 2: EOS, >2: 0-9, a-z
-    CHANNELS = 1  # number of color channels from source image (1 = grayscale, 3 = rgb)
+    TARGET_VOCAB_SIZE = 88+3  # 0: PADDING, 1: GO, 2: EOS, >2: 0-9, a-z
+    CHANNELS = 3  # number of color channels from source image (1 = grayscale, 3 = rgb)
 
     MAX_WIDTH = 160
-    MAX_HEIGHT = 60
-    MAX_PREDICTION = 8
+    MAX_HEIGHT = 160
+    MAX_PREDICTION = 30
 
     USE_DISTANCE = True
 
